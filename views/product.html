@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <!-- Bootstrap core CSS -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="container">
+    <a href="/products">Back to Products</a>
+    <h1> {{product.name}} </h1>
+    <h2> {{product.rating}} </h2>
+
+    <form action='/product/{{product.id}}?_method=DELETE' method='POST'>
+      <button class='btn btn-danger'>Delete</button>
+    </form>
+
+
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <!-- Bootstrap core CSS -->
+    <style type='text/css'>
+      .label {
+        float : right;
+      }
+    </style>
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="container">
+    <a href="/">Home</a>
+    <h1> Products </h1>
+
+    <div id="product-search" class="form-group">
+      <form action="/products" method="POST">
+        <input name="name" class="form-control input-lg" placeholder="name">
+        <br>
+        <input name="rating" class="form-control input-lg" placeholder="rating">
+        <br>
+        <input type="submit" class="btn btn-primary" value="Submit">
+      </form>
+
+    </div>
+
+
+    {% for product in products %}
+      <li class="list-group-item"><a href="/product/{{product.id}}">{{product.name}}</a>
+      <span class="label label-default">{{product.rating}}</span></li>
+    {% endfor %}
+
+  </body>
+
+</html>
