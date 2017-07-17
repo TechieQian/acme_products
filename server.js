@@ -7,6 +7,10 @@ const route = require("./routes/products")
 const swig = require("swig")
 const path = require("path")
 const bodyParser = require('body-parser')
+const socket = require('socket.io')
+const io = socket(server)
+const morgan = require('morgan')
+
 
 
 //Rendering engine
@@ -20,9 +24,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //File system access
 app.use('/vendor', express.static(path.join(__dirname, 'node_modules')))
 
+//Override Post to deleteProduct
+app.use(require('method-override')('_method'))
+
 //Logging Func
-const logger = (req,res,next) => {console.log(req.method, req.originalUrl, res.statusCode) ; next() }
-app.use(logger)
+app.use(morgan('dev'))
 
 //Routing
-app.use('/', route())
+app.use('/', route(io))

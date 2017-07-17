@@ -23,6 +23,7 @@ module.exports = function (io) {
     let rating = parseInt(req.body.rating)
     if( rating && (rating => 0) && (rating <= 10) && req.body.name) {
       db.addProduct(req.body.name, rating)
+      io.emit('newProduct', {name: req.body.name, rating: rating})
       res.redirect('/products')
     }
     else {
@@ -30,7 +31,7 @@ module.exports = function (io) {
     }
   })
 
-  router.post('/product/:id', function(req,res) {
+  router.delete('/product/:id', function(req,res) {
     db.deleteProduct(req.params.id*1)
     res.redirect('/products')
   })

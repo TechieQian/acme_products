@@ -6,12 +6,12 @@
   <body class="container">
     <a href="/products">Back to Products</a>
     <h1> {{product.name}} </h1>
-    <h2> {{product.rating}} </h2>
+    <div class="well">
+      Our customers rated this product a solid <span color="blue">{{product.rating}}</span>/10
+    </div>
 
     <form action='/product/{{product.id}}?_method=DELETE' method='POST'>
       <button class='btn btn-danger'>Delete</button>
     </form>
-
-
   </body>
 </html>

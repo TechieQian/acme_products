@@ -24,11 +24,25 @@
 
     </div>
 
+    <div id="productList">
+      {% for product in products %}
+        <li class="list-group-item"><a href="/product/{{product.id}}">{{product.name}}</a>
+        <span class="label label-default">{{product.rating}}</span></li>
+      {% endfor %}
+    </div>
 
-    {% for product in products %}
-      <li class="list-group-item"><a href="/product/{{product.id}}">{{product.name}}</a>
-      <span class="label label-default">{{product.rating}}</span></li>
-    {% endfor %}
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect();
+      socket.on('connect', function(){
+        console.log('connected to server via WebSockets!');
+      });
+      socket.on('newProduct', function (product) {
+        console.log("product is",product);
+      });
+
+      console.log("my html is ", str)
+    </script>
 
   </body>
 
