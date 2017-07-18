@@ -40,7 +40,7 @@
         console.log("product is",product);
         let line1 = '<li class=\"list-group-item\"><a href="/product/'+product.id+'">'+product.name+ '</a>'
         let line2 = '<span class=\"label label-default\">'+product.rating+'</span></li>'
-        $('#productList').append(line1, line2)
+        $('#productList').append(line1 + line2)
       });
 
 
