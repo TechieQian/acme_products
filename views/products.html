@@ -13,8 +13,8 @@
     <a href="/">Home</a>
     <h1> Products </h1>
 
-    <div id="product-search" class="form-group">
-      <form action="/products" method="POST">
+    <div class="form-group">
+      <form id="product-search" action="/products" method="POST">
         <input name="name" class="form-control input-lg" placeholder="name">
         <br>
         <input name="rating" class="form-control input-lg" placeholder="rating">
@@ -30,7 +30,7 @@
         <span class="label label-default">{{product.rating}}</span></li>
       {% endfor %}
     </div>
-
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io.connect();
@@ -39,9 +39,10 @@
       });
       socket.on('newProduct', function (product) {
         console.log("product is",product);
+        $('#product-search').append('<li>'+product.name+'</li>')
       });
 
-      console.log("my html is ", str)
+
     </script>
 
   </body>
