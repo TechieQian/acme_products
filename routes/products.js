@@ -21,9 +21,11 @@ router.get('/error', (req,res) => res.render('error', {}))
 module.exports = function (io) {
   router.post('/products', function(req,res) {
     let rating = parseInt(req.body.rating)
-    if( rating && (rating => 0) && (rating <= 10) && req.body.name) {
-      db.addProduct(req.body.name, rating)
-      io.emit('newProduct', {name: req.body.name, rating: rating})
+    let name = req.body.name
+    if( rating && (rating => 0) && (rating <= 10) && name) {
+      db.addProduct(name, rating)
+      let id = db.getProductByName(name)["id"]
+      io.emit('newProduct', {name: name, rating: rating, id : id})
       res.redirect('/products')
     }
     else {

@@ -31,6 +31,10 @@ module.exports = {
     return products.filter(x=> x.id == id)[0]
   },
 
+  getProductByName : function(name) {
+    return products.filter(x=> x.name == name)[0]
+  },
+
   addProduct : function (name,rating) {
     let id = ++this.id
     products.push({ name : name ,rating : rating, id: id} )

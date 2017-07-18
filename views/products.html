@@ -14,14 +14,13 @@
     <h1> Products </h1>
 
     <div class="form-group">
-      <form id="product-search" action="/products" method="POST">
+      <form action="/products" method="POST">
         <input name="name" class="form-control input-lg" placeholder="name">
         <br>
         <input name="rating" class="form-control input-lg" placeholder="rating">
         <br>
         <input type="submit" class="btn btn-primary" value="Submit">
       </form>
-
     </div>
 
     <div id="productList">
@@ -39,7 +38,9 @@
       });
       socket.on('newProduct', function (product) {
         console.log("product is",product);
-        $('#product-search').append('<li>'+product.name+'</li>')
+        let line1 = '<li class=\"list-group-item\"><a href="/product/'+product.id+'">'+product.name+ '</a>'
+        let line2 = '<span class=\"label label-default\">'+product.rating+'</span></li>'
+        $('#productList').append(line1, line2)
       });
 
 
