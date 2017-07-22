@@ -11,8 +11,6 @@ const socket = require('socket.io')
 const io = socket(server)
 const morgan = require('morgan')
 
-
-
 //Rendering engine
 swig.setDefaults({ cache : false});
 app.set("view engine", "html")
@@ -20,9 +18,6 @@ app.engine("html", swig.renderFile)
 
 //Body parse
 app.use(bodyParser.urlencoded({ extended: false }))
-
-//File system access
-app.use('/vendor', express.static(path.join(__dirname, 'node_modules')))
 
 //Override Post to deleteProduct
 app.use(require('method-override')('_method'))
